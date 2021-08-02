@@ -1,27 +1,36 @@
 <h4 class="text-center">Registre-se e mostre seu pet ao mundo</h4>
-<form class="form mt-4"  (ngSubmit)="create()" #createForm = "ngForm">
+<form class="form mt-4"  (ngSubmit)="create()" [formGroup] = "novoUsuarioForm">
   <div class="mb-3">
     <input type="email" name="email" class="form-control" placeholder="Email"
-    [(ngModel)]="user.email"
-    #campoEmail = "ngModel"
-    required
+      formControlName = "email"
     />
     <app-messagem
-      *ngIf="campoEmail.invalid  && campoSenha.touched"
-      mensagem ="Email Obrigatório"></app-messagem>
+      *ngIf="novoUsuarioForm.get('email')?.errors?.required &&
+             novoUsuarioForm.get('email')?.touched"
+      mensagem ="Email Obrigatório">
+    </app-messagem>
   </div>
+    <app-messagem
+      *ngIf="novoUsuarioForm.get('email')?.errors?.email &&
+            novoUsuarioForm.get('email')?.touched"
+      mensagem ="Email no formato errado">
+    </app-messagem>
   <div class="mb-3">
-    <input type="password" name="senha" id="senha" class="form-control" placeholder="Senha"
-    [(ngModel)]="user.password"
-    #campoSenha = "ngModel"
-    required
+    <input type="password" name="password" class="form-control" placeholder="Senha"
+    formControlName = "password"
     />
     <app-messagem
-    *ngIf="campoSenha.invalid && campoSenha.touched"
-     mensagem ="Senha Obrigatório"></app-messagem>
+    *ngIf="novoUsuarioForm.get('password')?.errors?.required &&
+           novoUsuarioForm.get('password')?.touched"
+    mensagem ="Senha Obrigatório">
+  </app-messagem>
+  <app-messagem
+    *ngIf="novoUsuarioForm.errors?.senhaIgualUsuario"
+    mensagem ="Senha não pode ser igual ao email">
+  </app-messagem>
   </div>
   <div class="d-grid d-grid gap-3">
-    <button type="submit" [disabled]="createForm.invalid" class="btn btn-primary">Criar</button>
+    <button type="submit" class="btn btn-primary">Criar</button>
     <button [routerLink]="['']" class="btn btn-primary">Voltar</button>
   </div>
 </form>
