@@ -1,13 +1,15 @@
 <header class="sticky-top">
-  <nav class="navbar navbar-light bg-white">
-    <a class="navbar-brand"> ComprePI</a>
-    <div *ngIf="user$ | async as user">
-      <div *ngIf="user.email; else login">
-        <i class="fa fa-user-circle mr-1"> </i>
-        <a class="mr-1">
-          {{user.email}}
-        </a>
-        <a (click)="logout()"> Logout</a>
+  <nav class="navbar navbar-expand-lg navbar-light bg-light">
+    <div class="container-fluid">
+      <a class="navbar-brand"> ComprePI</a>
+      <div *ngIf="user$ | async as user">
+        <div class="collapse navbar-collapse" *ngIf="user.email; else login">
+          <div class="navbar-nav">
+            <i class="nav-link fa fa-user-circle fa-1x"></i>
+            <a  class="nav-link" >{{user.email}}</a>
+            <a class="nav-link btn btn-outline-primary" (click)="logout()"><i class="fa fa-sign-out fa-1x"></i></a>
+          </div>
+        </div>
       </div>
     </div>
   </nav>
