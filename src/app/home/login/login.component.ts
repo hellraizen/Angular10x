@@ -10,7 +10,7 @@ import { Router } from '@angular/router';
 })
 export class LoginComponent implements OnInit {
 
-  user:AuthUser = { email:'', password:'' };
+  userAuth:AuthUser = { email:'', password:'' };
 
   constructor(
     private authService: AutenticacaoService,
@@ -21,7 +21,7 @@ export class LoginComponent implements OnInit {
   }
 
   login(){
-    this.authService.autenticar(this.user).subscribe((res)=>{
+    this.authService.autenticar(this.userAuth).subscribe((res)=>{
       this.router.navigate(['animais']);
     },(error) =>{
       console.error(error);

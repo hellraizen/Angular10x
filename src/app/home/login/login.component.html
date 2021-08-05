@@ -2,7 +2,7 @@
 <form class="form mt-4" (ngSubmit)="login()" #loginForm = "ngForm">
   <div class="mb-3">
     <input type="email" name="email" id="email" class="form-control" placeholder="Email do usuario"
-    [(ngModel)]="user.email"
+    [(ngModel)]="userAuth.email"
     #campoEmail = "ngModel"
     required
     />
@@ -12,7 +12,7 @@
   </div>
   <div class="mb-3">
     <input type="password" name="senha" id="senha" class="form-control" placeholder="Senha"
-    [(ngModel)]="user.password"
+    [(ngModel)]="userAuth.password"
     #campoSenha = "ngModel"
     required
     />

@@ -39,13 +39,15 @@ export class NovoUsuarioComponent implements OnInit {
   }
 
   create(){
-    const novoUsuario = this.novoUsuarioForm.getRawValue() as AuthUser;
-    this.novoUsuarioService.create(novoUsuario).subscribe((res)=>{
-      console.log(res);
-      this.router.navigate(['']);
-    },(error) =>{
-      console.error(error);
-    });
+    if(this.novoUsuarioForm.valid){
+      const novoUsuario = this.novoUsuarioForm.getRawValue() as AuthUser;
+      this.novoUsuarioService.create(novoUsuario).subscribe((res)=>{
+        console.log(res);
+        this.router.navigate(['']);
+      },(error) =>{
+        console.error(error);
+      });
+    }
   }
 
 }
