@@ -1,15 +1,18 @@
+import { environment } from './../../../environments/environment.prod';
 import { AuthUser } from './../../models/authUser';
 import { HttpClient, HttpErrorResponse, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable, throwError } from 'rxjs';
 import { retry, catchError } from 'rxjs/operators';
 
+const API = environment.loginUrl;
+
 @Injectable({
   providedIn: 'root'
 })
 export class NovoUsuarioService {
 
-  private url = 'http://localhost:4201';
+
   constructor(private httpClient: HttpClient) { }
 
   httpOptions = {
@@ -17,7 +20,7 @@ export class NovoUsuarioService {
   }
 
   create(user:AuthUser): Observable<AuthUser>{
-    return this.httpClient.post<AuthUser>(this.url + '/auth/register', JSON.stringify(user), this.httpOptions)
+    return this.httpClient.post<AuthUser>(API + '/auth/register', JSON.stringify(user), this.httpOptions)
       .pipe(
         retry(2),
         catchError(this.handleError)
