@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Input } from '@angular/core';
 
 @Component({
   selector: 'app-cartao',
@@ -7,6 +7,8 @@ import { Component, OnInit } from '@angular/core';
 })
 export class CartaoComponent implements OnInit {
 
+  @Input() titulo ='';
+  
   constructor() { }
 
   ngOnInit(): void {
